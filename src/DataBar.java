@@ -1,7 +1,7 @@
 /*
 ClassName: DataBar
-Author: Jamaine Drakes
-Purpose: 
+Author: Evan Leacock
+Purpose: Serves as a vertical data bar for line graphs. Has customizable height (pixels) and color (RGB).
 Start Date: May 01, 2022
 Last Edit: May 01, 2022
 */
@@ -20,53 +20,62 @@ public class DataBar extends JPanel
     //========================================================================================//
     //                                    DATA MEMBERS                                        //
     //========================================================================================//
-    private int height;
-    
+    private int height; // the height of this data bar
+    private Color color; // the color of this data bar
+
     //========================================================================================//
     //                                    CONSTRUCTOR                                         //
     //========================================================================================//
     public DataBar(int newHeight)
     {
-        height = newHeight;
+        height = newHeight; // Set the DataBar's height
 
         setLayout(new FlowLayout());
         //setSize(500, height);
 
-        setBackground(Color.BLACK);
+        color = new Color(0, 0, 0);
+
+        setBackground(color); // Default color
         
         
         //========================================================================================//
         //                                  ADDING COMPONENTS                                     //
         //========================================================================================//
-    
-    
-        //========================================================================================//
-        //                                ADDING ACTION LISTENERS                                 //
-        //========================================================================================//
-    
+
     
     }// DataBar
 
-    //========================================================================================//
-    //                                ACTION PERFORMED METHOD                                 //
-    //========================================================================================//
-    public void actionPerformed(ActionEvent e)
+    public DataBar(int newHeight, Color newColor)
     {
-        // Event Handlers
-        
-    }// actionPerformed
+        this(newHeight); // reuse other constructor
+        color = newColor;
 
+        setBackground(color); // set bg to specific color
+
+        //========================================================================================//
+        //                                  ADDING COMPONENTS                                     //
+        //========================================================================================//
+
+
+    } // DataBar
 
     //========================================================================================//
     //                                    OTHER METHODS                                       //
     //========================================================================================//
     @Override
+
+    // sets the DataBar's preferred height only; the width remains unchanged from the super's
     public Dimension getPreferredSize() 
     {
         // TODO Auto-generated method stub
         int width = super.getPreferredSize().width;
 
         return new Dimension(width, height);
+    } // getPreferredSize
+
+    public void setHeight(int newHeight)
+    {
+        height = newHeight;
     }
 
 }// DataBar

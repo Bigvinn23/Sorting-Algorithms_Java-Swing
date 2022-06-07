@@ -1,9 +1,9 @@
 /*
-ClassName: MainFrame
+ClassName: QuickSort
 Author: Evan Leacock
 Purpose: 
-Start Date: May 01, 2022
-Last Edit: May 01, 2022
+Start Date: May 26, 2022
+Last Edit: May 26, 2022
 */
 
 //========================================================================================//
@@ -12,101 +12,71 @@ Last Edit: May 01, 2022
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
-import javax.xml.crypto.Data;
 
 import java.util.ArrayList;
-import java.util.Scanner;
 
 
-public class MainFrame extends JFrame implements ActionListener
+public class QuickSort extends JFrame implements ActionListener
 {
     //========================================================================================//
     //                                    DATA MEMBERS                                        //
     //========================================================================================//
-    private int maxHeight;
-    private int minHeight;
-    private int numDataBars;
-
-    private ArrayList<DataBar> dataBar;
-
-    private JPanel midPanel;
-    private JPanel topPanel;
-    private JPanel botPanel;
-
     private JButton scrambleButton;
+
+    private ArrayList<Integer> numArr;
+
+    private JTextArea numText;
+    
     
     public static void main(String[] args)
     {
-        new MainFrame();
+        new QuickSort();
     }// main
 
 
     //========================================================================================//
     //                                    CONSTRUCTOR                                         //
     //========================================================================================//
-    public MainFrame()
+    public QuickSort()
     {
-        setLayout(new BorderLayout());
+        setLayout(new FlowLayout());
         setSize(500, 400);
-        setTitle("Title Here");
+        setTitle("Quicksort");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         centerFrame(this);
 
-        maxHeight = 500; //this.getHeight();
-        minHeight = 50;
-        numDataBars = 30;
-
-        dataBar = new ArrayList<DataBar>();
-
-        topPanel = new JPanel();
-        midPanel = new JPanel();
-        botPanel = new JPanel();
-
         scrambleButton = new JButton("Scramble");
+
+        numArr = new ArrayList<Integer>();
+
+        numText = new JTextArea();
         
-        int currentHeight;
-        int heightRange;
+        setVisible(true);
+        
+        for (int i = 0; i < 10; i++) 
+        {
+            numArr.add(i);
+        }
 
-        heightRange = maxHeight - minHeight;
-        currentHeight = minHeight;
-
-        int heightDiff;
-
-        heightDiff = heightRange / numDataBars;
+        
+        for(int i = 0; i < numArr.size(); i++)
+        {
+            
+        }
         
         //========================================================================================//
         //                                  ADDING COMPONENTS                                     //
         //========================================================================================//
-
-        for(int i = 0; i < numDataBars; i++)
-        {
-            dataBar.add(new DataBar(currentHeight));
-
-            currentHeight += heightDiff;
-        }
-
-        for(int i = 0; i < dataBar.size(); i++)
-        {
-            midPanel.add(dataBar.get(i));
-
-            currentHeight += heightDiff;
-        }
-
-        add("Center", midPanel);
-
-
-        botPanel.add(scrambleButton);
-
-        add("South", botPanel);
+        
+        add(numText);
+        add(scrambleButton);
     
         //========================================================================================//
         //                                ADDING ACTION LISTENERS                                 //
         //========================================================================================//
-
-        scrambleButton.addActionListener(this);
     
-        setVisible(true);
-    }// MainFrame
+    
+    }// QuickSort
 
     //========================================================================================//
     //                                ACTION PERFORMED METHOD                                 //
@@ -114,13 +84,7 @@ public class MainFrame extends JFrame implements ActionListener
     public void actionPerformed(ActionEvent e)
     {
         // Event Handlers
-        if(e.getSource() == scrambleButton)
-        {
-            swap(1, 7, dataBar);
-
-            //midPanel.validate();
-        }
-
+        
     }// actionPerformed
 
 
@@ -128,16 +92,9 @@ public class MainFrame extends JFrame implements ActionListener
     //                                    OTHER METHODS                                       //
     //========================================================================================//
     
-    private void swap(int pos1, int pos2, ArrayList<DataBar> dataBars)
+    private void scramble()
     {
-        if((pos1 >= 0) && (pos2 >= 0) && (pos1 < dataBars.size()) && (pos2 < dataBars.size()))
-        {
-            DataBar tempDataBar = new DataBar(dataBars.get(pos1).getHeight());
 
-            dataBars.get(pos1).setHeight(dataBars.get(pos2).getPreferredSize().height);
-
-            dataBars.get(pos2).setHeight(tempDataBar.getPreferredSize().height);
-        }
     }
     
     // This method will center the frame on the screen
@@ -156,4 +113,4 @@ public class MainFrame extends JFrame implements ActionListener
 
     }// centerFrame
 
-}// MainFrame
+}// QuickSort
